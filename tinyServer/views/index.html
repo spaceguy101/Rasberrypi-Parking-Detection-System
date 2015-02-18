@@ -3,26 +3,62 @@
 <head> 
 <meta charset="utf-8" /> 
 <title>My Express API server example</title> 
+<style>
+p {
+height:100px;
+width:100px;
+    background-color:red;
+}
+</style>
+
 <script src="jquery-2.1.1.min.js"></script> 
  <script >
 
 
-window.onload = function() {
+window.onload = updateInfo;
+
+
+function updateInfo() {
  var url,  jqxhr;  
- for( i= 0 ; i < 2 ; i++ ){ 
+ for( i= 0 ; i < 5 ; i++ ){ 
  	url = document.URL+'inputs/'+i; 
  	 jqxhr = $.getJSON( url, function(data) { 
- 	 	console.log('API response received');  
- 	 	$('#input').append('<p>input gpio port '+data['gpio']+' on pin '+ data['pin']+' has current value '+data['value']+'</p>');  
+ 	 	
+		if(data['value']== 1){
+		console.log(document.getElementById(data['pin']));
+		document.getElementById(data['pin']).style.backgroundColor = "green";
+		}
+		else
+		document.getElementById(data['pin']).style.backgroundColor = "red";
+ 	 	//$('#input').append('<p>input pin '+ data['pin']+' has current value '+data['value']+'</p>');  
  	 });  
  	} 
  };
-
+setInterval(updateInfo, 3000);
  </script> 
  </head> 
 
  <body> 
- <H1>My Express API server example</H1> 
- <div id="input"></div>
+ <H1>Pin Detection</H1> 
+ <div id="input">
+ 
+ <p id='p1'>
+
+</p>
+ <p id='p2'>
+
+</p>
+ <p id='p3'>
+
+</p>
+ <p id='p4'>
+
+</p>
+ <p id='p5'>
+
+</p>
+
+ 
+ </div>
   </body> 
   </html>
