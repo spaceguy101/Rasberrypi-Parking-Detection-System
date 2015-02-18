@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8" /> 
+<title>My Express API server example</title> 
+<script src="jquery-2.1.1.min.js"></script> 
+ <script >
+
+
+window.onload = function() {
+ var url,  jqxhr;  
+ for( i= 0 ; i < 2 ; i++ ){ 
+ 	url = document.URL+'inputs/'+i; 
+ 	 jqxhr = $.getJSON( url, function(data) { 
+ 	 	console.log('API response received');  
+ 	 	$('#input').append('<p>input gpio port '+data['gpio']+' on pin '+ data['pin']+' has current value '+data['value']+'</p>');  
+ 	 });  
+ 	} 
+ };
+
+ </script> 
+ </head> 
+
+ <body> 
+ <H1>My Express API server example</H1> 
+ <div id="input"></div>
+  </body> 
+  </html>
